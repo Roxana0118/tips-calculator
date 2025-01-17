@@ -19,6 +19,15 @@ def calculeaza_bacsis():
     try:
         nota_plata = float(nota_plata_entry.get())
         procent_bacsis = float(procent_bacsis_entry.get())
+
+        if nota_plata == 0 and procent_bacsis > 0:
+            messagebox.showinfo("Eroare", "Nota de plată nu poate fi 0.")
+            return
+
+        if nota_plata == 0 and procent_bacsis == 0:
+            messagebox.showinfo("Eroare", "Atât nota de plată cât și bacșișul nu pot fi 0.")
+            return
+
         bacsis = nota_plata * (procent_bacsis / 100)
         total = nota_plata + bacsis
 
