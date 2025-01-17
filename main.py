@@ -36,6 +36,16 @@ def calculeaza_bacsis():
         rezultat_label.config(text="Introdu date valide!")
         total_label.config(text="")
 
+def resetare():
+    global imagine_vizibila
+    nota_plata_entry.delete(0, tk.END)
+    procent_bacsis_entry.delete(0, tk.END)
+    rezultat_label.config(text="")
+    total_label.config(text="")
+    if imagine_vizibila:
+        bacsis_zero_label.place_forget()
+        imagine_vizibila = False
+
 # Crearea ferestrei principale
 root = tk.Tk()
 root.title("Calculator Bacsis")
@@ -76,6 +86,10 @@ procent_bacsis_entry.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 # Butonul "Calculează"
 calculeaza_button = tk.Button(content_frame, text="Calculează", command=calculeaza_bacsis)
 calculeaza_button.grid(row=2, column=0, columnspan=2, pady=20)
+
+#Butonul "Resetare"
+resetare_button = tk.Button(content_frame, text="Resetare", command=resetare)
+resetare_button.grid(row=2, column=1, columnspan=2, pady=10)
 
 # Eticheta de rezultat
 rezultat_label = tk.Label(content_frame, text="", bg="lightblue", font=("Arial", 12, "bold"))
