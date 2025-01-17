@@ -13,23 +13,28 @@ def calculeaza_bacsis():
         imagine_vizibila = False
         procent_bacsis_entry.delete(0, tk.END)
         rezultat_label.config(text="")
+        total_label.config(text="")
         return
 
     try:
         nota_plata = float(nota_plata_entry.get())
         procent_bacsis = float(procent_bacsis_entry.get())
         bacsis = nota_plata * (procent_bacsis / 100)
+        total = nota_plata + bacsis
 
         if bacsis == 0:
-            rezultat_label.config(text="Bacșișul este 0 Ron.")
+            rezultat_label.config(text="Bacșișul este de 0 Ron.")
+            total_label.config(text=f"Totalul notei este de {total:.2f} Ron.")
             bacsis_zero_label.place(relx=0.5, rely=0.5, anchor="s")
             bacsis_zero_label.tkraise()
             imagine_vizibila = True
         else:
-            rezultat_label.config(text=f"Bacșișul este {bacsis:.2f} Ron.")
+            rezultat_label.config(text=f"Bacșișul este de {bacsis:.2f} Ron.")
+            total_label.config(text=f"Totalul notei este de {total:.2f} Ron.")
 
     except ValueError:
         rezultat_label.config(text="Introdu date valide!")
+        total_label.config(text="")
 
 # Crearea ferestrei principale
 root = tk.Tk()
@@ -64,7 +69,7 @@ tk.Label(content_frame, text="Nota de plată totală (Ron):", bg="lightblue").gr
 nota_plata_entry = tk.Entry(content_frame)
 nota_plata_entry.grid(row=0, column=1, padx=10, pady=10, sticky="w")
 
-tk.Label(content_frame, text="Procent bacsis (%):", bg="lightblue").grid(row=1, column=0, padx=10, pady=10, sticky="e")
+tk.Label(content_frame, text="Procent bacșiș (%):", bg="lightblue").grid(row=1, column=0, padx=10, pady=10, sticky="e")
 procent_bacsis_entry = tk.Entry(content_frame)
 procent_bacsis_entry.grid(row=1, column=1, padx=10, pady=10, sticky="w")
 
@@ -75,6 +80,10 @@ calculeaza_button.grid(row=2, column=0, columnspan=2, pady=20)
 # Eticheta de rezultat
 rezultat_label = tk.Label(content_frame, text="", bg="lightblue", font=("Arial", 12, "bold"))
 rezultat_label.grid(row=3, column=0, columnspan=2, pady=10)
+
+# Eticheta pentru total
+total_label = tk.Label(content_frame, text="", bg="lightblue", font=("Arial", 12, "bold"))
+total_label.grid(row=4, column=0, columnspan=2, pady=10)
 
 # Rularea aplicației
 root.mainloop()
